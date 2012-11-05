@@ -489,11 +489,6 @@ function wccorreios_shipping_load() {
             // Proccess measures.
             $measures = $this->order_shipping( $package );
 
-echo '<pre>';
-print_r($measures);
-echo '</pre>';
-
-
             $cubage = new Correios_Cubage( $measures['height'], $measures['width'], $measures['length'] );
             $totalcubage = $cubage->cubage();
 
