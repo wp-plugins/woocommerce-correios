@@ -3,7 +3,7 @@ Contributors: claudiosanches, rodrigoprior
 Tags: ecommerce, e-commerce, commerce, wordpress ecommerce, shipping, delivery, woocommerce, correios
 Requires at least: 3.0
 Tested up to: 3.4.2
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,12 @@ Entre em contato [clicando aqui](http://claudiosmweb.com/plugins/correios-para-w
 
 == Changelog ==
 
+= 1.3.2 - 06/12/2012 =
+
+* Melhoria no método connection_method().
+* Adicionado método (fix_format()) para corrigir o formato das medidas.
+* Correção do método order_shipping().
+
 = 1.3.1 - 30/11/2012 =
 
 * Corrigido o método connection_method().
@@ -169,6 +175,10 @@ Entre em contato [clicando aqui](http://claudiosmweb.com/plugins/correios-para-w
 * Versão inicial do plugin.
 
 == Upgrade Notice ==
+
+= 1.3.2 =
+
+* Fixed options and formats
 
 = 1.3.1 =
 
