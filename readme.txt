@@ -1,5 +1,6 @@
 === WooCommerce Correios ===
 Contributors: claudiosanches, rodrigoprior
+Donate link: http://claudiosmweb.com/doacoes/
 Tags: ecommerce, e-commerce, commerce, wordpress ecommerce, shipping, delivery, woocommerce, correios
 Requires at least: 3.0
 Tested up to: 3.5
@@ -11,13 +12,13 @@ Adds Correios shipping to the WooCommerce plugin
 
 == Description ==
 
-### Add Correios shipping to WooCommerce
+### Add Correios shipping to WooCommerce ###
 
 This plugin adds Correios shipping to WooCommerce.
 
 Please notice that WooCommerce must be installed and active.
 
-### Descrição em Português:
+### Descrição em Português: ###
 
 Adicione os Correios como método de entrega em sua loja WooCommerce.
 
@@ -51,11 +52,11 @@ Você pode esclarecer suas dúvidas usando:
 
 == Installation ==
 
-* Upload plugin files to your plugins folder, or install using WordPress' built-in Add New Plugin installer
-* Activate the plugin
-* Navigate to WooCommerce -> Settings -> Shipping, choose Correios and fill settings
+* Upload plugin files to your plugins folder, or install using WordPress built-in Add New Plugin installer;
+* Activate the plugin;
+* Navigate to WooCommerce -> Settings -> Shipping, choose Correios and fill settings.
 
-### Instalação e configuração em Português:
+### Instalação e configuração em Português: ###
 
 = Instalação do plugin: =
 
@@ -76,22 +77,13 @@ Nesta tela configure o seu **CEP de origem**, e ative os serviços que você des
 
 Também existe a possibilidade de definir um tamanho mínimo para o pacote das suas encomendas. Por padrão o plugin vem configurado com as medidas mínimas requeridas pelos Correios.
 
-== License ==
-
-This file is part of WooCommerce Correios.
-WooCommerce Correios is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published
-by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-WooCommerce Correios is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-You should have received a copy of the GNU General Public License along with Author Bio Box. If not, see <http://www.gnu.org/licenses/>.
-
 == Frequently Asked Questions ==
 
 = What is the plugin license? =
 
 * This plugin is released under a GPL license.
 
-### FAQ em Português:
+### FAQ em Português: ###
 
 = Qual é a licença do plugin? =
 
@@ -131,6 +123,11 @@ No momento o Webservices faz cotação apenas para dentro do Brasil.
 = Mais dúvidas relacionadas ao funcionamento do plugin? =
 
 Entre em contato [clicando aqui](http://claudiosmweb.com/plugins/correios-para-woocommerce/).
+
+== Screenshots ==
+
+1. Settings page.
+2. Checkout page.
 
 == Changelog ==
 
@@ -217,7 +214,11 @@ Entre em contato [clicando aqui](http://claudiosmweb.com/plugins/correios-para-w
 
 * Enjoy it.
 
-== Screenshots ==
+== License ==
 
-1. screenshot-1.png
-2. screenshot-2.png
+This file is part of WooCommerce Correios.
+WooCommerce Correios is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published
+by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+WooCommerce Correios is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along with Author Bio Box. If not, see <http://www.gnu.org/licenses/>.
