@@ -24,7 +24,7 @@ Adicione os Correios como método de entrega em sua loja WooCommerce.
 
 [Correios](http://www.correios.com.br/) é um método de entrega brasileiro.
 
-O plugin WooCommerce Correios foi desenvolvido sem nenhum isentivo dos Correios. Nenhum dos desenvolvedores deste plugin possuem vínculos com esta empresa.
+O plugin WooCommerce Correios foi desenvolvido sem nenhum incentivo dos Correios. Nenhum dos desenvolvedores deste plugin possuem vínculos com esta empresa.
 
 Este plugin foi feito baseado na documentação do [Webservices Correios](http://www.correios.com.br/webservices/) e com apoio da [Infranology](http://infranology.com.br/) na construção das classes de SOAP, SimpleXML e Cubagem que possuem este plugin.
 
@@ -218,9 +218,10 @@ Entre em contato [clicando aqui](http://claudiosmweb.com/plugins/correios-para-w
 
 == License ==
 
-This file is part of WooCommerce Correios.
 WooCommerce Correios is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published
 by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
 WooCommerce Correios is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-You should have received a copy of the GNU General Public License along with Author Bio Box. If not, see <http://www.gnu.org/licenses/>.
+
+You should have received a copy of the GNU General Public License along with WooCommerce Correios. If not, see <http://www.gnu.org/licenses/>.
