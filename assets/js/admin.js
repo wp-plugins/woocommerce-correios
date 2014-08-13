@@ -1,44 +1,27 @@
 jQuery( document ).ready( function( $ ) {
-	var correiosSelect = $( '#woocommerce_correios_corporate_service' ),
-		correios_val = correiosSelect.val(),
-		display_date = $( '#woocommerce_correios_display_date' ),
-		correiosAddDays = $( '.form-table:eq(0) tr:eq(7)' ),
-		correiosLogin = $( '.form-table:eq(1) tr:eq(1)' ),
-		correiosPassword = $( '.form-table:eq(1) tr:eq(2)' ),
-		correiosEsedex = $( '.form-table:eq(1) tr:eq(7)' );
+	$( '#woocommerce_correios_display_date' ).on( 'change', function() {
+		var field = $( '.form-table:eq(0) tr:eq(7)' );
 
-	correiosAddDays.hide();
-	correiosLogin.hide();
-	correiosPassword.hide();
-	correiosEsedex.hide();
-
-	function addtionalDaysDisplay() {
-		if ( display_date.is( ':checked' ) ) {
-			correiosAddDays.show();
+		if ( $( this ).is( ':checked' ) ) {
+			field.show();
 		} else {
-			correiosAddDays.hide();
+			field.hide();
 		}
-	}
-	addtionalDaysDisplay();
+	}).change();
 
-	display_date.on( 'click', function() {
-		addtionalDaysDisplay();
-	} );
+	$( '#woocommerce_correios_corporate_service' ).on( 'change', function() {
+		var login    = $( '.form-table:eq(1) tr:eq(1)' ),
+			password = $( '.form-table:eq(1) tr:eq(2)' ),
+			eSedex   = $( '.form-table:eq(1) tr:eq(7)' );
 
-	function correiosActive( correios ) {
-		if ( 'corporate' === correios ) {
-			correiosLogin.show();
-			correiosPassword.show();
-			correiosEsedex.show();
+		if ( 'corporate' === $( this ).val() ) {
+			login.show();
+			password.show();
+			eSedex.show();
 		} else {
-			correiosLogin.hide();
-			correiosPassword.hide();
-			correiosEsedex.hide();
+			login.hide();
+			password.hide();
+			eSedex.hide();
 		}
-	}
-	correiosActive( correios_val );
-
-	correiosSelect.on( 'change', function() {
-		correiosActive( $( this ).val() );
-	} );
+	}).change();
 });
