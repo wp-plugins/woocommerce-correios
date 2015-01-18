@@ -6,23 +6,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Correios orders.
  */
-class WC_Correios_Orders {
+class WC_Correios_Admin_Orders {
 
 	/**
 	 * Initialize the order actions.
 	 */
 	public function __construct() {
+		// Add metabox.
+		add_action( 'add_meta_boxes', array( $this, 'register_metabox' ) );
 
-		if ( is_admin() ) {
-			// Add metabox.
-			add_action( 'add_meta_boxes', array( $this, 'register_metabox' ) );
-
-			// Save Metabox.
-			add_action( 'woocommerce_process_shop_order_meta', array( $this, 'save_tracking_code' ) );
-		}
-
-		// Show tracking code in order details.
-		add_action( 'woocommerce_view_order', array( $this, 'view_order_tracking_code' ), 1 );
+		// Save Metabox.
+		add_action( 'woocommerce_process_shop_order_meta', array( $this, 'save_tracking_code' ) );
 	}
 
 	/**
@@ -100,22 +94,6 @@ class WC_Correios_Orders {
 		$notification = $mailer->emails['WC_Email_Correios_Tracking'];
 		$notification->trigger( $order, $tracking_code );
 	}
-
-	/**
-	 * Display the order tracking code in order details.
-	 *
-	 * @param  int    $order_id Order ID.
-	 *
-	 * @return string           Tracking code as link.
-	 */
-	public function view_order_tracking_code( $order_id ) {
-		$tracking_code = get_post_meta( $order_id, 'correios_tracking', true );
-
-		if ( ! empty( $tracking_code ) ) {
-			$url = sprintf( '<a href="http://websro.correios.com.br/sro_bin/txect01$.QueryList?P_LINGUA=001&P_TIPO=001&P_COD_UNI=%1$s" target="_blank">%1$s</a>', $tracking_code );
-			echo '<div class="woocommerce-info"><strong>' . __( 'Correios', 'woocommerce-correios' ) . ':</strong> ' . sprintf( __( 'Your the tracking code: %s.', 'woocommerce-correios' ), $url ) . '</div>';
-		}
-	}
 }
 
-new WC_Correios_Orders();
+new WC_Correios_Admin_Orders();

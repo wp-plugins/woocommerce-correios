@@ -5,7 +5,7 @@
  * Description: Correios para WooCommerce
  * Author: claudiosanches, rodrigoprior
  * Author URI: http://claudiosmweb.com/
- * Version: 2.1.3
+ * Version: 2.2.0
  * License: GPLv2 or later
  * Text Domain: woocommerce-correios
  * Domain Path: /languages/
@@ -27,7 +27,7 @@ class WC_Correios {
 	 *
 	 * @var string
 	 */
-	const VERSION = '2.1.3';
+	const VERSION = '2.2.0';
 
 	/**
 	 * Integration id.
@@ -54,6 +54,10 @@ class WC_Correios {
 			// Checks with WooCommerce is installed.
 			if ( class_exists( 'WC_Shipping_Method' ) ) {
 				$this->includes();
+
+				if ( is_admin() ) {
+					$this->admin_includes();
+				}
 
 				add_filter( 'woocommerce_shipping_methods', array( $this, 'add_method' ) );
 				add_action( 'wp_ajax_wc_correios_simulator', array( 'WC_Correios_Product_Shipping_Simulator', 'ajax_simulator' ) );
@@ -100,8 +104,6 @@ class WC_Correios {
 
 	/**
 	 * Load the plugin text domain for translation.
-	 *
-	 * @return void
 	 */
 	public function load_plugin_textdomain() {
 		$locale = apply_filters( 'plugin_locale', get_locale(), 'woocommerce-correios' );
@@ -112,8 +114,6 @@ class WC_Correios {
 
 	/**
 	 * Includes.
-	 *
-	 * @return void.
 	 */
 	private function includes() {
 		include_once 'includes/class-wc-correios-error.php';
@@ -122,7 +122,14 @@ class WC_Correios {
 		include_once 'includes/class-wc-correios-shipping.php';
 		include_once 'includes/class-wc-correios-product-shipping-simulator.php';
 		include_once 'includes/class-wc-correios-emails.php';
-		include_once 'includes/class-wc-correios-orders.php';
+		include_once 'includes/class-wc-correios-tracking-history.php';
+	}
+
+	/**
+	 * Admin includes.
+	 */
+	private function admin_includes() {
+		include_once 'includes/admin/class-wc-correios-admin-orders.php';
 	}
 
 	/**
@@ -154,6 +161,20 @@ class WC_Correios {
 	 */
 	public function simplexmlelement_missing_notice() {
 		echo '<div class="error"><p>' . sprintf( __( 'WooCommerce Correios depends to %s to work!', 'woocommerce-correios' ), '<a href="http://php.net/manual/en/book.simplexml.php">' . __( 'SimpleXML', 'woocommerce-correios' ) . '</a>' ) . '</p></div>';
+	}
+
+	/**
+	 * Plugin logger
+	 *
+	 * @return WC_Logger
+	 */
+	public static function logger() {
+		if ( class_exists( 'WC_Logger' ) ) {
+			return new WC_Logger();
+		} else {
+			global $woocommerce;
+			return $woocommerce->logger();
+		}
 	}
 }
 
