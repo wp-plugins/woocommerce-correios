@@ -9,6 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_Correios_Tracking_History {
 
 	/**
+	 * Tracking API URL.
+	 *
+	 * @var string
+	 */
+	private $_api_url = 'http://websro.correios.com.br/sro_bin/sroii_xml.eventos';
+
+	/**
 	 * Initialize the order actions.
 	 */
 	public function __construct() {
@@ -22,7 +29,9 @@ class WC_Correios_Tracking_History {
 	 * @return string
 	 */
 	protected function get_tracking_history_api_url() {
-		return apply_filters( 'woocommerce_correios_tracking_api_url', 'http://websro.correios.com.br/sro_bin/sroii_xml.eventos' );
+		$url = $this->_api_url;
+
+		return apply_filters( 'woocommerce_correios_tracking_api_url', $url );
 	}
 
 	/**
@@ -40,19 +49,9 @@ class WC_Correios_Tracking_History {
 	 * @return array
 	 */
 	protected function get_user_data() {
-		$options  = $this->get_method_options();
-		$login    = 'ECT';
-		$password = 'SRO';
+		$user_data = apply_filters( 'woocommerce_correios_tracking_user_data', array( 'login' => 'ECT', 'password' => 'SRO' ) );
 
-		if ( 'corporate' == $options['corporate_service'] ) {
-			$login    = empty( $options['login'] ) ? 'ECT' : $options['login'];
-			$password = empty( $options['password'] ) ? 'SRO' : $options['password'];
-		}
-
-		return array(
-			'login'    => $login,
-			'password' => $password
-		);
+		return $user_data;
 	}
 
 	/**
