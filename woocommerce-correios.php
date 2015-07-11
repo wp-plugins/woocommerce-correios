@@ -3,9 +3,9 @@
  * Plugin Name: WooCommerce Correios
  * Plugin URI: https://github.com/claudiosmweb/woocommerce-correios
  * Description: Correios para WooCommerce
- * Author: claudiosanches, rodrigoprior
+ * Author: Claudio Sanches
  * Author URI: http://claudiosmweb.com/
- * Version: 2.2.1
+ * Version: 2.2.2
  * License: GPLv2 or later
  * Text Domain: woocommerce-correios
  * Domain Path: /languages/
@@ -27,14 +27,7 @@ class WC_Correios {
 	 *
 	 * @var string
 	 */
-	const VERSION = '2.2.1';
-
-	/**
-	 * Integration id.
-	 *
-	 * @var string
-	 */
-	protected static $method_id = 'correios';
+	const VERSION = '2.2.2';
 
 	/**
 	 * Instance of this class.
@@ -82,15 +75,6 @@ class WC_Correios {
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * Return the method id/slug.
-	 *
-	 * @return string Gateway id/slug variable.
-	 */
-	public static function get_method_id() {
-		return self::$method_id;
 	}
 
 	/**
@@ -178,6 +162,6 @@ class WC_Correios {
 	}
 }
 
-add_action( 'plugins_loaded', array( 'WC_Correios', 'get_instance' ), 0 );
+add_action( 'plugins_loaded', array( 'WC_Correios', 'get_instance' ) );
 
 endif;

@@ -145,14 +145,8 @@ class WC_Correios_Connect {
 	 * @param string $debug Debug mode.
 	 */
 	public function __construct() {
-		$this->id = WC_Correios::get_method_id();
-
-		// Logger.
-		if ( class_exists( 'WC_Logger' ) ) {
-			$this->log = new WC_Logger();
-		} else {
-			$this->log = $this->woocommerce_method()->logger();
-		}
+		$this->id  = 'correios';
+		$this->log = WC_Correios::logger();
 	}
 
 	/**
@@ -460,7 +454,7 @@ class WC_Correios_Connect {
 			'StrRetorno'          => 'xml'
 		) );
 
-		$url = add_query_arg( $args, apply_filters( 'woocommerce_correios_webservice_url' , $this->_webservice ) );
+		$url = add_query_arg( $args, apply_filters( 'woocommerce_correios_webservice_url', $this->_webservice ) );
 
 		if ( 'yes' == $this->debug ) {
 			$this->log->add( $this->id, 'Requesting the Correios WebServices...' );
