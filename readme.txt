@@ -4,7 +4,7 @@ Donate link: http://claudiosmweb.com/doacoes/
 Tags: shipping, delivery, woocommerce, correios
 Requires at least: 4.0
 Tested up to: 4.3
-Stable tag: 2.2.3
+Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -180,6 +180,13 @@ Ative a opção de **Log de depuração** do plugin e entre em contato [clicando
 
 == Changelog ==
 
+= 2.3.0 - 2015/08/08 =
+
+* Adicionado suporte para WooCommerce 2.4.x.
+* Removido suporte para WooCommerce 2.0.x.
+* Corrigida a conversão dos valores de "Taxa de manuseio".
+* Corrigido a conversão de valores do simulador de frete na página de produto.
+
 = 2.2.3 - 2015/07/23 =
 
 * Melhorada a função que converte o formato de moeda que vêm dos Correios para o WooCommerce.
@@ -279,7 +286,7 @@ Ative a opção de **Log de depuração** do plugin e entre em contato [clicando
 
 * Removida a classe de conexão com SOAP.
 * Melhoria do código.
-* Adicionado método para conexão utilizando `wp_remote_get` e leitura com `SimpleXmlElement`.
+* Adicionado método para conexão utilizando `wp_remote_get` e leitura com `SimpleXMLElement`.
 * Adicionado opção de taxa de manuseio.
 * Melhoria das descrições na página de configuração.
 * Melhoria no tratamento de erros.
@@ -347,9 +354,12 @@ Ative a opção de **Log de depuração** do plugin e entre em contato [clicando
 
 == Upgrade Notice ==
 
-= 2.2.3 =
+= 2.3.0 =
 
-* Melhorada a função que converte o formato de moeda que vêm dos Correios para o WooCommerce.
+* Adicionado suporte para WooCommerce 2.4.x.
+* Removido suporte para WooCommerce 2.0.x.
+* Corrigida a conversão dos valores de "Taxa de manuseio".
+* Corrigido a conversão de valores do simulador de frete na página de produto.
 
 == License ==
 

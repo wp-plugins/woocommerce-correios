@@ -146,7 +146,7 @@ class WC_Correios_Connect {
 	 */
 	public function __construct() {
 		$this->id  = 'correios';
-		$this->log = WC_Correios::logger();
+		$this->log = new WC_Logger();
 	}
 
 	/**
@@ -298,7 +298,7 @@ class WC_Correios_Connect {
 	}
 
 	/**
-	 * Fix number format for SimpleXML.
+	 * Fix number format for XML.
 	 *
 	 * @param  float $value  Value with dot.
 	 *
@@ -306,6 +306,20 @@ class WC_Correios_Connect {
 	 */
 	protected function float_to_string( $value ) {
 		$value = str_replace( '.', ',', $value );
+
+		return $value;
+	}
+
+	/**
+	 * Replace comma by dot.
+	 *
+	 * @param  mixed $value Value to fix.
+	 *
+	 * @return mixed
+	 */
+	public static function fix_currency_format( $value ) {
+		$value = str_replace( '.', '', $value );
+		$value = str_replace( ',', '.', $value );
 
 		return $value;
 	}
@@ -461,23 +475,31 @@ class WC_Correios_Connect {
 		}
 
 		// Gets the WebServices response.
-		$response = wp_remote_get( $url, array( 'sslverify' => false, 'timeout' => 30 ) );
+		$response = wp_safe_remote_get( $url, array( 'timeout' => 30 ) );
 
 		if ( is_wp_error( $response ) ) {
 			if ( 'yes' == $this->debug ) {
 				$this->log->add( $this->id, 'WP_Error: ' . $response->get_error_message() );
 			}
 		} elseif ( $response['response']['code'] >= 200 && $response['response']['code'] < 300 ) {
-			$result = new SimpleXmlElement( $response['body'], LIBXML_NOCDATA );
-
-			foreach ( $result->cServico as $service ) {
-				$code = (string) $service->Codigo;
-
+			try {
+				$result = self::safe_load_xml( $response['body'], LIBXML_NOCDATA );
+			} catch ( Exception $e ) {
 				if ( 'yes' == $this->debug ) {
-					$this->log->add( $this->id, 'Correios WebServices response [' . self::get_service_name( $code ) . ']: ' . print_r( $service, true ) );
+					$this->log->add( $this->id, 'Correios WebServices invalid XML: ' . $e->getMessage() );
 				}
+			}
 
-				$values[ $code ] = $service;
+			if ( isset( $result->cServico ) ) {
+				foreach ( $result->cServico as $service ) {
+					$code = (string) $service->Codigo;
+
+					if ( 'yes' == $this->debug ) {
+						$this->log->add( $this->id, 'Correios WebServices response [' . self::get_service_name( $code ) . ']: ' . print_r( $service, true ) );
+					}
+
+					$values[ $code ] = $service;
+				}
 			}
 		} else {
 			if ( 'yes' == $this->debug ) {
@@ -486,5 +508,40 @@ class WC_Correios_Connect {
 		}
 
 		return $values;
+	}
+
+	/**
+	 * Safe load XML.
+	 *
+	 * @param  string $source
+	 * @param  int    $options
+	 *
+	 * @return SimpleXMLElement|bool
+	 */
+	public static function safe_load_xml( $source, $options = 0 ) {
+		$old = null;
+
+		if ( function_exists( 'libxml_disable_entity_loader' ) ) {
+			$old = libxml_disable_entity_loader( true );
+		}
+
+		$dom    = new DOMDocument();
+		$return = $dom->loadXML( $source, $options );
+
+		if ( ! is_null( $old ) ) {
+			libxml_disable_entity_loader( $old );
+		}
+
+		if ( ! $return ) {
+			return false;
+		}
+
+		if ( isset( $dom->doctype ) ) {
+			throw new Exception( 'Unsafe DOCTYPE Detected while XML parsing' );
+
+			return false;
+		}
+
+		return simplexml_import_dom( $dom );
 	}
 }
